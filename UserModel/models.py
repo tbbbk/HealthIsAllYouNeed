@@ -18,13 +18,13 @@ Fields:
 """
 class User(AbstractUser):
     introduction = models.TextField(max_length=100)
-    weight = models.DecimalField(max_digits=3, decimal_places=2)
-    height = models.DecimalField(max_digits=3, decimal_places=2)
-    target = models.DecimalField(max_digits=3, decimal_places=2)
-    age = models.IntegerField()
-    gender = models.BooleanField()
+    weight = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    height = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    target = models.DecimalField(max_digits=3, decimal_places=2, null=True)
+    age = models.IntegerField(null=True)
+    gender = models.BooleanField(null=True)
     email = models.EmailField()
-    loseORadd = models.BooleanField()
+    loseORadd = models.BooleanField(null=True)
 
 
 
