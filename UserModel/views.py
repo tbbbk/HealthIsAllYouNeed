@@ -13,7 +13,7 @@ def login(request):
 
     if not user:
         print("查无此人")
-        return render(request, 'login.html', {'error': '查无此人'})
+        return render(request, 'login.html', {'error': '用户名或密码错误'})
     else:
         rep = redirect("/index/")
         rep.set_cookie("is_login", True)

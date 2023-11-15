@@ -124,9 +124,9 @@ USE_TZ = True
 
 STATIC_URL = "assets/"
 
-# STATICFILES_DIRS = [
-#     (os.path.join(BASE_DIR, 'assets'))
-# ]
+STATICFILES_DIRS = [
+    BASE_DIR / "assets",
+]
 
 
 # Default primary key field type
