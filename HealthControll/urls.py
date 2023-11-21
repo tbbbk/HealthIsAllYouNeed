@@ -21,6 +21,9 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("index/", views.index),
+    path("", views.index),
     path("index/record/", views.record),
-    path('', include('UserModel.urls')),
+    path('accounts/', include('UserModel.urls')),
+    path("index/make_fit_plan/", views.make_fit_plan),
+    path("index/make_diet_plan/", views.make_diet_plan),
 ]

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <title>减肥计划</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-image: url('/assets/img/bg_makeplan.jpg');
+            background-size: inherit;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+        }
+
+        .plan {
+            text-align: center;
+            flex: 1;
+            margin: 10px;
+        }
+
+        .plan label {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .plan .out_plan {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+
+        .plan input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .plan textarea {
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .plan button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .plan input[type="checkbox"]+label {
+            font-size: 20px;
+            color: black;
+        }
+
+        .plan input[type="checkbox"]:checked+label {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>减肥计划</h1>
+    <div class="container">
+        <div class="plan">
+            <form id="infoForm" action="" method="post">
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td><label for="name">姓名：</label></td>
+                        <td><input type="text" id="name" name="name" style="width: 150px;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="age">年龄：</label></td>
+                        <td><input type="number" id="age" name="age" min="1" max="150" style="width: 150px;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="weight">体重：</label></td>
+                        <td><input type="number" id="weight" name="weight" min="50" max="250" placeholder="(kg)"
+                                style="width: 150px;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="height">身高：</label></td>
+                        <td><input type="number" id="height" name="height" min="50" max="250" placeholder="(cm)"
+                                style="width: 150px;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="target">目标体重：</label></td>
+                        <td><input type="number" id="target" name="target" min="50" max="250" placeholder="(kg)"
+                                style="width: 150px;"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="gender">性别：</label></td>
+                        <td>
+                            <select name="gender" style="width: 160px;">
+                                <option value="man">male</option>
+                                <option value="woman">female</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="strength">锻炼强度：</label>
+                        </td>
+                        <td>
+                            <input type="number" id="strength" name="intensity" min="1" max="10" placeholder="(1 - 10)"
+                                style="width: 150px;">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="exercise_days">锻炼日：</label>
+                        </td>
+                        <td>
+                            <select name="exercise_days[]" id="exercise_days" multiple style="width: 160px;">
+                                <option value="Monday">周一</option>
+                                <option value="Tuesday">周二</option>
+                                <option value="Wednesday">周三</option>
+                                <option value="Thursday">周四</option>
+                                <option value="Friday">周五</option>
+                                <option value="Saturday">周六</option>
+                                <option value="Sunday">周日</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit" id="submitBtn">
+                    生成计划
+                </button>
+            </form>
+        </div>
+
+        <div class="plan">
+            <label for="date">本周锻炼计划：</label>
+            <br>
+            {% if plan_list %}
+            <ul>
+                {% for item in plan_list %}
+                <li>
+                    <strong>{{ item.day }}</strong>:
+                    类型 - {{ item.details.exercise_type }}, 时间（分钟） - {{ item.details.minute }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <div class="out_plan" style="font-size: 20px" id="displayPlan">
+                请先填写左侧信息
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from UserModel.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 
 # Create your views here.
 
@@ -15,9 +15,8 @@ def login(request):
         print("查无此人")
         return render(request, 'login.html', {'error': '用户名或密码错误'})
     else:
-        rep = redirect("/index/")
-        rep.set_cookie("is_login", True)
-        return rep
+        django_login(request, user)
+        return redirect("/index/")
 
 
 def register(request):
@@ -36,3 +35,9 @@ def register(request):
         password=password
     )
     return redirect('/login/')  
+
+
+def logout(request):
+    django_logout(request)
+    return redirect("/accounts/login/")
+
