@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ch">
+<html lang="ch" >
 
 <head>
     <title>饮食计划</title>
@@ -71,104 +71,115 @@
             border: none;
             cursor: pointer;
         }
+
+        .plan input[type="checkbox"]+label {
+            font-size: 20px;
+            color: black;
+        }
+
+        .plan input[type="checkbox"]:checked+label {
+            color: green;
+        }
     </style>
 </head>
 
 <body>
-    <h1>制定饮食计划</h1>
-    <div class="container">
-        <div class="plan">
-            <form id="infoForm" action="" method="post">
-                {% csrf_token %}
-                <table>
-                    <tr>
-                        <td><label for="name">姓名：</label></td>
-                        <td><input type="text" id="name" name="name" style="width: 150px;"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="age">年龄：</label></td>
-                        <td><input type="number" id="age" name="age" min="1" max="150" style="width: 150px;"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="weight">体重：</label></td>
-                        <td><input type="number" id="weight" name="weight" min="50" max="250" placeholder="(kg)"
-                                style="width: 150px;"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="height">身高：</label></td>
-                        <td><input type="number" id="height" name="height" min="50" max="250" placeholder="(cm)"
-                                style="width: 150px;"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="target">目标体重：</label></td>
-                        <td><input type="number" id="target" name="target" min="50" max="250" placeholder="(kg)"
-                                style="width: 150px;"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="gender">性别：</label></td>
-                        <td>
-                            <select name="gender" style="width: 160px;">
-                                <option value="man">male</option>
-                                <option value="woman">female</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="eat_cant">请输入您的忌口：</label>
-                        </td>
-                        <td>
-                            <input type="text" id="eat_cant" name="taboo" placeholder="请输入您的忌口" style="width: 150px;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="food">选择喜欢的食物类型：</label>
-                        </td>
-                        <td>
-                            <select name="food[]" multiple style="width: 160px;">
-                                <option value="vegetable">蔬菜</option>
-                                <option value="noodle">面食</option>
-                                <option value="flesh">肉食</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <button type="submit" id="submitBtn">
-                        生成计划
-                    </button>
-            </form>
-        </div>
-        <div class="plan">
-            <label for="date">饮食计划：</label>
-            <br>
-            {% if plan_list %}
-            <h1>早餐：</h1>
-            <ul>
-                {% for item in plan_list.breakfast %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
+<h1>制定饮食计划</h1>
+<div class="container">
+    <div class="plan">
+        <form id="infoForm" action="" method="post">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td><label for="name">姓名：</label></td>
+                    <td><input type="text" id="name" name="name" style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="age">年龄：</label></td>
+                    <td><input type="number" id="age" name="age" min="1" max="150" style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="weight">体重：</label></td>
+                    <td><input type="number" id="weight" name="weight" min="50" max="250" placeholder="(kg)"
+                               style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="height">身高：</label></td>
+                    <td><input type="number" id="height" name="height" min="50" max="250" placeholder="(cm)"
+                               style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="target">目标体重：</label></td>
+                    <td><input type="number" id="target" name="target" min="50" max="250" placeholder="(kg)"
+                               style="width: 150px;"></td>
+                </tr>
+                <tr>
+                    <td><label for="gender">性别：</label></td>
+                    <td>
+                        <select name="gender" style="width: 160px;">
+                            <option value="man">male</option>
+                            <option value="woman">female</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="eat_cant">请输入您的忌口：</label>
+                    </td>
+                    <td>
+                        <input type="text" id="eat_cant" name="taboo" placeholder="请输入您的忌口" style="width: 150px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="food">选择喜欢的食物类型：</label>
+                    </td>
+                    <td>
+                        <select name="food[]" multiple style="width: 160px;">
+                            <option value="vegetable">蔬菜</option>
+                            <option value="noodle">面食</option>
+                            <option value="flesh">肉食</option>
+                        </select>
+                    </td>
+                </tr>
 
-            <h1>午餐：</h1>
-            <ul>
-                {% for item in plan_list.lunch %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-
-            <h1>晚餐：</h1>
-            <ul>
-                {% for item in plan_list.dinner %}
-                <li>{{ item }}</li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <div class="out_plan" style="font-size: 20px" id="displayPlan">
-                请先填写左侧信息
-            </div>
-            {% endif %}
-        </div>
+            </table>
+            <button type="submit" id="submitBtn">
+                生成计划
+            </button>
+        </form>
     </div>
+    <div class="plan">
+        <label for="date">饮食计划：</label>
+        <br>
+        {% if plan_list %}
+        <h1>早餐：</h1>
+        <ul>
+            {% for item in plan_list.breakfast %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <h1>午餐：</h1>
+        <ul>
+            {% for item in plan_list.lunch %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+
+        <h1>晚餐：</h1>
+        <ul>
+            {% for item in plan_list.dinner %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="out_plan" style="font-size: 20px" id="displayPlan">
+            请先填写左侧信息
+        </div>
+        {% endif %}
+    </div>
+</div>
 </body>
 
 </html>
