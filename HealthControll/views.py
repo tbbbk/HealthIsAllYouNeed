@@ -69,6 +69,35 @@ def make_diet_plan(request):
     return render(request, 'make_diet_plan.html', {'plan_list': plan})
 
 
+@login_required
+def make_part_plan(request):
+    if request.method == 'GET':
+        return render(request, "make_part_plan.html")
+    name = request.POST.get('name')
+    age = request.POST.get('age')
+    weight = int(request.POST.get('weight'))
+    height = int(request.POST.get('height'))
+    target = int(request.POST.get('target'))
+    gender = request.POST.get('gender')
+    part = request.POST.getlist('parts[]')
+    plan = generate_part_plan(part, abs(weight - target))
+    return render(request, 'make_part_plan.html', {'plan_list': plan})
+
+
+def generate_part_plan(parts, diff):
+    plan = {'plan': []}
+    for part in parts:
+        if part == 'foot':
+            plan['plan'].append(f'腿部：每天跑步{diff + 30}分钟')
+        if part == 'breast':
+            plan['plan'].append(f'胸部：每天俯卧撑{diff + 100}个')
+        if part == 'abdomen':
+            plan['plan'].append(f'腹部：每天仰卧起坐{diff + 150}个')
+        if part == 'arm':
+            plan['plan'].append(f'手臂：每天引体向上{diff + 50}个')
+    return plan
+
+
 def calculate_bmi(weight, height):
     height_in_meters = height / 100  # 将身高从厘米转换为米
     bmi = weight / (height_in_meters ** 2)
@@ -130,5 +159,3 @@ def workout_schedule(age, gender, weight, height, target_weight, exercise_intens
     bmi = calculate_bmi(weight, height)
     exercise_plan = generate_workout_plan(bmi, target_weight, exercise_intensity, exercise_days, weight)
     return exercise_plan
-
-# {'Tuesday': {'类型': '高强度训练', '时间（分钟）': 60}, 'Wednesday': {'类型': '高强度训练', '时间（分钟）': 60}} 

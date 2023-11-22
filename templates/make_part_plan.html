@@ -2,7 +2,7 @@
 <html lang="ch">
 
 <head>
-    <title>减肥计划</title>
+    <title>特定部位锻炼计划</title>
     <meta charset="UTF-8">
     <style>
         body {
@@ -14,8 +14,8 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background-image: url('/assets/img/bg_makeplan.jpg');
-            background-size: inherit;
+            background-image: url('/assets/img/bg2.webp');
+            background-size: cover;
         }
 
         h1 {
@@ -26,6 +26,7 @@
             display: flex;
             justify-content: space-between;
             width: 80%;
+            /* Adjust the width as needed */
         }
 
         .plan {
@@ -33,6 +34,7 @@
             flex: 1;
             margin: 10px;
         }
+
 
         .plan label {
             font-size: 30px;
@@ -82,7 +84,7 @@
 </head>
 
 <body>
-    <h1>减肥计划</h1>
+    <h1>专属强化计划</h1>
     <div class="container">
         <div class="plan">
             <form id="infoForm" action="" method="post">
@@ -120,48 +122,34 @@
                             </select>
                         </td>
                     </tr>
+
                     <tr>
                         <td>
-                            <label for="strength">锻炼强度：</label>
+                            <label for="parts">选择想的强化部位：</label>
                         </td>
                         <td>
-                            <input type="number" id="strength" name="intensity" min="1" max="10" placeholder="(1 - 10)"
-                                style="width: 150px;">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="exercise_days">锻炼日：</label>
-                        </td>
-                        <td>
-                            <select name="exercise_days[]" id="exercise_days" multiple style="width: 160px;">
-                                <option value="周一">周一</option>
-                                <option value="周二">周二</option>
-                                <option value="周三">周三</option>
-                                <option value="周四">周四</option>
-                                <option value="周五">周五</option>
-                                <option value="周六">周六</option>
-                                <option value="周日">周日</option>
+                            <select name="parts[]" multiple style="width: 160px;">
+                                <option value="foot">腿</option>
+                                <option value="breast">胸</option>
+                                <option value="abdomen">腹</option>
+                                <option value="arm">手臂</option>
                             </select>
                         </td>
                     </tr>
+
                 </table>
-                <br>
                 <button type="submit" id="submitBtn">
                     生成计划
                 </button>
             </form>
         </div>
-
         <div class="plan">
-            <label for="date">本周锻炼计划：</label>
+            <label for="date">锻炼计划：</label>
             <br>
-            {% if plan_list %}
+            {% if plan_list.plan %}
             <ul>
-                {% for item in plan_list %}
-                <li style="list-style-type: none;"></li>
-                    在<strong>{{ item.day }}</strong>进行{{ item.details.minute }}分钟的{{ item.details.exercise_type }}锻炼
-                </li>
+                {% for item in plan_list.plan %}
+                <li style="list-style-type: none;">{{ item }}</li>
                 {% endfor %}
             </ul>
             {% else %}

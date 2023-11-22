@@ -26,4 +26,5 @@ urlpatterns = [
     path('accounts/', include('UserModel.urls')),
     path("index/make_fit_plan/", views.make_fit_plan),
     path("index/make_diet_plan/", views.make_diet_plan),
+    path("index/make_part_plan/", views.make_part_plan),
 ]
