@@ -69,3 +69,8 @@ class ReplyComment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
+class fitPlan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    intensity = models.IntegerField()
+    date = models.CharField(max_length=500)
+    time = models.CharField(max_length=500)
