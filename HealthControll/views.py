@@ -84,6 +84,7 @@ def make_part_plan(request):
     return render(request, 'make_part_plan.html', {'plan_list': plan})
 
 
+@login_required
 def generate_part_plan(parts, diff):
     plan = {'plan': []}
     for part in parts:

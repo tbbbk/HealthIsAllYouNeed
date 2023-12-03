@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
+import Article
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,4 +28,5 @@ urlpatterns = [
     path("index/make_fit_plan/", views.make_fit_plan),
     path("index/make_diet_plan/", views.make_diet_plan),
     path("index/make_part_plan/", views.make_part_plan),
+    path('article/', include('Article.urls', namespace='article')),
 ]

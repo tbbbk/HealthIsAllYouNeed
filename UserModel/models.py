@@ -25,10 +25,4 @@ class User(AbstractUser):
     gender = models.BooleanField(null=True)
     email = models.EmailField()
     loseORadd = models.BooleanField(null=True)
-
-
-
-
-
-
-
+    
