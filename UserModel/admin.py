@@ -1,3 +1,6 @@
-# from django.contrib import admin
-# import pymysql
-# pymysql.install_as_MySQLdb()
+from django.contrib import admin
+from .models import *
+
+
+admin.site.register(User)
+admin.site.register(Video)

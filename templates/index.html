@@ -35,39 +35,35 @@
 </head>
 
 <body>
-    <!--导航-->
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <div class="navbar-header">
-                <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="https://www.yuanshen.com" class="navbar-brand"><img alt="智减 Logo" width="200" height="70"
-                        src="/assets/img/logo.png" style="margin-right:20px;"></a>
-            </div>
-            <!--导航-->
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="#home">制定计划</a></li>
-                    <li><a href="#html5">健身视频</a></li>
-                    <li><a href="#course">社区互动</a></li>
-                    <li><a href="#contact">联系我们</a></li>
-                    <li><a href="/index/record/">完善信息</a></li>
-                    <li><a href="/accounts/logout/">退出登录</a></li>
-                </ul>
-            </div>
-            <!--导航-->
+      
+          <!-- 导航栏商标 -->
+          <a class="navbar-brand" href="/index/">智减</a>
+      
+          <!-- 导航入口 -->
+          <div>
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                  aria-haspopup="true" aria-expanded="false">
+                  当前用户：{{ user.username }}
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/accounts/logout/">退出登录</a>
+              </li>
+            </ul>
+          </div>
+      
         </div>
-    </nav>
-    <!--导航-->
+      </nav>
 
     <!--home-->
     <section id="home">
         <div class="jumbotron banner wow fadeInRight">
             <div class="container">
-                <h1>Health is all U need.</h1>
+                <h1>智减：Health is all U need.</h1>
             </div>
         </div>
     </section>
@@ -79,15 +75,15 @@
             <div class="row wow fadeInUp" data-wow-duration="0.5s">
                 <div class="col-md-4">
                     <a href="/index/make_fit_plan">
-                        <div href="jianfeijihua.html">
-                            <img src="/assets/img/weight.png" class="img-responsive" alt="体重" />
+                        <div>
+                            <img src="/assets/img/weights.jpg" class="img-responsive" alt="体重" />
                             <h3>制定专属减肥计划</h3>
                         </div>
                     </a>
                 </div>
                 <div class="col-md-4">
                     <a href="/index/make_diet_plan">
-                        <img src="/assets/img/height.png" class="img-responsive" alt="" />
+                        <img src="/assets/img/height.jpg" class="img-responsive" alt="" />
                         <div href=>
                             <h3>制定专属饮食规划</h3>
                         </div>
@@ -95,7 +91,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="/index/make_part_plan">
-                        <img src="/assets/img/BMI.png" class="img-responsive" alt="" />
+                        <img src="/assets/img/sigama.jpg" class="img-responsive" alt="" />
                         <div href="butongbuweiduanlian.html">
                             <h3>特定部位强化训练</h3>
                         </div>
@@ -111,12 +107,9 @@
         <div class="container">
             <a class="col-md-7 wow fadeInLeft" href="https://www.qq.com">
                 <h2>分享计划</h2>
-                <!--插入一张图-->
-                <br></br>与世界分享你的计划
+                <hr>
+                与世界分享你的计划
             </a>
-            <div class="col-md-5 wow fadeInRight">
-                <img src="/assets/img/xcxyhs.png" class="img-responsive" alt="" />
-            </div>
         </div>
     </section>
     <!--html5-->
@@ -124,58 +117,26 @@
     <!--bootstrap-->
     <section id="bootstrap">
         <div class="container wow fadeInUp">
-            <div class="col-md-6">
-                <img src="/assets/img/xcxqygw.png" class="img-responsive" alt="" />
-            </div>
             <a class="col-md-6" href="{% url 'article:article_list' %}">
                 <h2>社区互动</h2>
-                <br>
+                <hr>
                 看看大家如何保持健康
-                <!--插入一张图-->
             </a>
         </div>
     </section>
-    <!--bootstrap-->
 
-    <!--course-->
-    <section id="course">
-        <div class="container">
-            <div class="row wow fadeIn" data-wow-delay="0.6s">
-                <div class="col-md-12">
-                    <h2>运动视频教程</h2>
-                    <a style="text-align: right;float: right" href="morevedio.html">更多视频</a>
-                </div>
-                <div class="col-md-3">
-                    <div class="course">
-                        <img class="case-img" src="/assets/img/case1.png" data-src="/assets/img/case1-xcxcode.jpg"
-                            class="img-responsive" />
-                        <a href="vedio/1.html">视频1</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="course">
-                        <img class="case-img" src="/assets/img/case14.png" data-src="/assets/img/case14-xcxcode.jpg"
-                            class="img-responsive" />
-                        <a href="vedio/2.html">视频2</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="course">
-                        <img class="case-img" src="/assets/img/case16.png" data-src="/assets/img/case16-xcxcode.jpg"
-                            class="img-responsive" />
-                        <a href="vedio/3.html">视频3</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="course">
-                        <img class="case-img" src="/assets/img/case17.png" data-src="/assets/img/case17-xcxcode.jpg"
-                            class="img-responsive" />
-                        <a href="vedio/4.html">视频4</a>
-                    </div>
-                </div>
-            </div>
+    <!--bootstrap-->
+    <section id="bootstrap">
+        <div class="container wow fadeInUp">
+            <a class="col-md-6" href="{% url 'video' %}">
+                <h2>运动教程视频</h2>
+                <hr>
+                这里有专业的运动视频
+            </a>
         </div>
     </section>
+
+
     <!--course-->
 
     <!--contact-->

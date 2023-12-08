@@ -26,3 +26,8 @@ class User(AbstractUser):
     email = models.EmailField()
     loseORadd = models.BooleanField(null=True)
     
+
+class Video(models.Model):
+    video_url = models.CharField(max_length=100)
+    video_title = models.CharField(max_length=100)
+    

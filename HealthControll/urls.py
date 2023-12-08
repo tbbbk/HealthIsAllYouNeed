@@ -17,12 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from . import views
-import Comment
-import Article
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("index/", views.index),
+    path("video/", views.video, name='video'),
     path("", views.index),
     path("index/record/", views.record),
     path('accounts/', include('UserModel.urls')),

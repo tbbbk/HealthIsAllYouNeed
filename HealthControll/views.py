@@ -1,5 +1,6 @@
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import redirect, render
+from UserModel.models import Video
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -97,6 +98,13 @@ def generate_part_plan(parts, diff):
         if part == 'arm':
             plan['plan'].append(f'手臂：每天引体向上{diff + 50}个')
     return plan
+
+
+@login_required
+def video(request):
+    videos = Video.objects.all()
+    context = {'videos': videos}
+    return render(request, 'video.html', context)
 
 
 def calculate_bmi(weight, height):
