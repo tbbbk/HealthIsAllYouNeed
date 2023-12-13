@@ -7,31 +7,12 @@
     <meta name="description" content="智减" />
     <meta http-equiv="content-language" content="zh">
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <!-- 引入bootstrap的css文件 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/assets/css/bootstrap-xinqi.css" />
     <link rel="stylesheet" href="/assets/css/animate.css" />
-    <script>
-        //获取DOM标签
-        var day = document.getElementById("day");
-        var hour = document.getElementById("hour");
-        var minute = document.getElementById("minute");
-        var second = document.getElementById("second");
-        //计时器setInterval
-        setInterval(function () {
-            var date1 = new Date()
-            var date2 = new Date("2020/12/12 00:00:00");
-
-            var d1 = new Date(date1);
-            var d2 = new Date(date2);
-
-            var diff = Math.abs(d1 - d2);
-
-            var days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-
-            document.getElementById("result").innerHTML = days;
-        }, 1000)
-    </script>
 </head>
 
 <body>
